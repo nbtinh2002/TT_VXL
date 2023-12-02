@@ -1,0 +1,12 @@
+Compiling F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\viduphimmatran1 on 14-Sep-22 at 09:53
+*** Error 18 "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\viduphimmatran1.c" Line 2(11,72): File can not be opened
+    Not in source "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\E:\Teaching\Day TTVXL\NHOM_1_ST3_THOAN\TV_PICKIT2_SHIFT_1.c"
+    Not in local "E:\Teaching\Day TTVXL\NHOM_1_ST3_THOAN\TV_PICKIT2_SHIFT_1.c"
+    Not in project "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\E:\Teaching\Day TTVXL\NHOM_1_ST3_THOAN\TV_PICKIT2_SHIFT_1.c"
+    Not in default "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\E:\Teaching\Day TTVXL\NHOM_1_ST3_THOAN\TV_PICKIT2_SHIFT_1.c"
+*** Error 18 "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\viduphimmatran1.c" Line 3(9,79): File can not be opened
+    Not in source "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\E:\Teaching\Day TTVXL\NHOM_1_ST3_THOAN\TV_PICKIT2_SHIFT_KEY4X4_138.c"
+    Not in local "E:\Teaching\Day TTVXL\NHOM_1_ST3_THOAN\TV_PICKIT2_SHIFT_KEY4X4_138.c"
+    Not in project "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\E:\Teaching\Day TTVXL\NHOM_1_ST3_THOAN\TV_PICKIT2_SHIFT_KEY4X4_138.c"
+    Not in default "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\E:\Teaching\Day TTVXL\NHOM_1_ST3_THOAN\TV_PICKIT2_SHIFT_KEY4X4_138.c"
+*** Error 128 "F:\TTVXL\BAI2\DHS_PHIMMATRAN\DHS_PHIMMATRAN\Code vi du\viduphimmatran1.c" Line 3(9,16): A #DEVICE required before this line

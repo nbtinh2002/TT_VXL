@@ -1,0 +1,37 @@
+[PROJECT]
+Target=viduphimmatran1.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.015
+Compiler=PCH
+[Target Data]
+FileList=viduphimmatran1.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[viduphimmatran1.c]
+Type=4
+[mru-list]
+1=viduphimmatran1.c
+[Opened Files]
+1=viduphimmatran1.c
+2=..\TV_PICKIT2_SHIFT_1.c
+3=..\TV_PICKIT2_SHIFT_KEY4X4_138.c
+4=
+[Units]
+Count=1
+1=viduphimmatran1 (main)
+
+[fileformats]
+forcecoff=0
+
+[ProjectLog]
+Days=1
+D1=14-09-2022
+D1_L=4
+D1_L1=[35225]Project Opened.
+D1_L2=[35388]Started Editing.
+D1_L3=[35716]Stopped Editing.
+TotalEdit=6
+TotalDebug=0
+D1_E=6
+D1_D=0
+D1_L4=[35716]Project Closed.
