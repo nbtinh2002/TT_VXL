@@ -1,0 +1,146 @@
+Phầm mềm biên dịch CSS C Compiler
+Phần mềm mô phỏng Proteus
+Phần mềm nạp chương trình PICkit 2v2
+-------------------------------cấu trúc file------------------------
+#define BOARD D501
+#include<tv_boards.c>
+void main()
+{
+    system_init();
+    while(TRUE)
+    {
+
+    }
+}
+----------------------------------------------------------------------
+----------------------------module 32 led đơn-------------------------
+khai báo led :  led32.ledx1[i]=1;
+		led32.ledx8[i]=0xff;
+		led32.ledx16[i]=0xffff;
+		led32.ledx32=0xffffffff;
+hiển thị led :  led32_display();
+----------------------------------------------------------------------
+-----------------------nút nhấn,phím ma trận--------------------------
+khai báo thư viện: #include<tv_key4x4.c>
+đọc nút nhấn :  if(inputcd(BT0)==0) {}
+		if(inputcd(BT1)==0) {}
+		if(inputcd(BT2)==0) {}
+		if(inputcd(BT3)==0) {}
+đọc phím key4x4:if(key4x4_read()==OK)
+		{
+		    if(key4x4.key==i) {}
+		}
+----------------------------------------------------------------------
+------------------------------Counter---------------------------------
+ngoài while: 
+cấu hình timer0: setup_timer_0(T0_EXT_H_TO_L|T0_DIV_1);
+		 set_timer0(0);
+trong while:
+đọc giá trị timer0: T0=get_timer0();
++ đếm xuống: sp=(giới hạn trên- giới hạn dưới)-T0
++ đếm lên : sp= T0;
+dừng đếm : setup_timer_0(T0_OFF);
+----------------------------------------------------------------------
+------------------------------Timer-----------------------------------
+tính toán thời gian: nap=65536-(t*Fosc)/(4000*bc*n)
+#int_timer1
+void ngat1()
+{
+	set_timer1(nạp);
+	bdn++;
+}
+ngoài while:
+cấu hình timer1: setup_timer_1(T1_INTERNAL|T1_DIV_BY_bc);
+		 set_timer1(nạp);
+		 enable_interrupts(int_timer1);
+		 enable_interrupts(global);
+trong while:
+if(bdn>=n)
+{
+	bdn=bdn-n;
+	xử lý khi định thời xong ở đây;
+}
+----------------------------------------------------------------------
+-------------------------4 led 7 đoạn trực tiếp-----------------------
+đọc led: d7seg.led[i]= 0xff-1-2-4-8-16-32-64-128;
+	 d7seg.led[i]= m7d[i/10%10];
+hiển thị:d7seg_display();
+----------------------------------------------------------------------
+-------------------------led 7 đoạn quét------------------------------
+đọc led: s7seg.led[i]= 0xff-1-2-4-8-16-32-64-128;
+	 s7seg.led[i]= m7d[i/10%10];
+hiển thị:s7seg_display();
+----------------------------------------------------------------------
+------------------------LCD,GLCD--------------------------------------
+khai báo thư viện: #include<tv_lcd.c>
+ngoài while:	   lcd_setup();
+di chuyển con trỏ: lcd_goto(cot,hang); cột:0-19, hàng:0-3
+hiển thị :	   lcd_data("Chuoi can hien thi");
+		   printf(lcd_data,"%02u:%02u:%02u", gio,phut,giay);
+		   lcd_write_2x3_num(so,cot,hang); số:0-9, cột:0-19,hàng:0-3
+		   lcd_write_4x3_num(so,cot); số:0-9, cột:0-19
+%d : bien thuoc kieu signed int8
+%u : bien thuoc kieu unsigned int8
+%ld: bien thuoc kieu signed int16 hoac signed int32
+%lu: bien thuoc kieu unsigned int16 hoac unsigned int32
+xóa màn hình: lcd_command(lcd_clear_display hoặc 0x01); delay_ms(2);
+
+khai báo thư viện: #include<tv_lcd.c>
+ngoài while: 	   glcd_setup();
+vẽ: 1: trắng,có , 0 : xanh, không, size=(5x7)*size
+    logo:	glcd_spkt_logo_raw(int x) ;               
+    hình tròn:  glcd_circle(x, y, radius,  fill, color);   
+    hcn:	glcd_rect(x1,y1, x2, y2,  fill, color);
+    tam giác:   glcd_triangle(x1,y1, x2,  y2, x3, y3, fill,color);
+    đoạn thẳng: glcd_line(x1, y1, x2,  y2,  color);
+    thanh:      glcd_bar(x1, y1, x2, y2, width, color);
+chuỗi kí tự:    glcd_text_setup( x, y,size, color, overlay) ;
+                glcd_text( "chuoi can hien thi");
+                printf(glcd_text,"%??",bien);
+hiển thị ra màn:glcd_update();
+----------------------------------------------------------------------
+------------------------------ADC,DS18B20-----------------------------
+ngoài while:    setup_adc(adc_clock_div_32);
+		setup_adc(ADC_OFF);
+		setup_adc_ports(an0_to_an2|vss_vdd);
+trong while:    set_adc_channel(lm35a_channel); delay_us(20);
+		set_adc_channel(lm35b_channel); delay_us(20);
+		set_adc_channel(gp2d12_channel); delay_us(20);
+đọc kết quả:    kq=read_adc();biến 16 bit
+---------------------------------------
+sum += read_adc()/2.046;
+n++;
+if(n>=x)x là số lần
+{ 
+  lm35b= sum/20;
+  n=0; sum=0;
+}
+---------------------------------------
+distance = read_adc();
+distance =pow(4277/distance,1.115);
+if (distance>80) distance=80;
+---------------------------------------
+khai báo thư viện: #include<tv_ds18b20.c> 
+ngoài while:	ds18b20_set_resolution(độ phân giải);
+		9-12:9 = 0.5, 10 = 0.25, 11=0.125, 12=0.0625
+trong while:	
+    if(ds18b20_read_temperature()==OK)
+    {
+	if(ds18b20.mumber_of_ds18b20==1)
+	{
+	    ng = ds18b20.temperatureA>>4;
+            tp = (ds18b20.temperatureA&0x0f)*1000/16;
+	}
+	else if(ds18b20.mumber_of_ds18b20==2) 
+	{
+            ng1 = ds18b20.temperatureA>>4;
+            tp1 = (ds18b20.temperatureA&0x0f)*10/16;                   
+            ng2 = ds18b20.temperatureB>>4;   // 2. Tinh toan va hien thi nhiet do cam bien B
+            tp2 = (ds18b20.temperatureB&0x0f)*10/16;                  	
+	}
+    }
+----------------------------------------------------------------------
+----------------------------DS1307------------------------------------
+khai báo thư viện: #include<tv_ds1307.c>
+----------------------------------------------------------------------
+-----------------------stepmotor,dcmotor------------------------------
